@@ -1,0 +1,23 @@
+{
+  "name": "blind-movies",
+  "version": "1.0.0",
+  "description": "frotend proyect using web components an tmdb api",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daarojaspa/blind-movies.git"
+  },
+  "keywords": [
+    "API",
+    "REST"
+  ],
+  "author": "daarojaspa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/daarojaspa/blind-movies/issues"
+  },
+  "homepage": "https://github.com/daarojaspa/blind-movies#readme"
+}
