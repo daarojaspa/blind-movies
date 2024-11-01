@@ -130,3 +130,5 @@ dist
 .pnp.*
 # secrets
 src/secret.js
+#env
+.env
