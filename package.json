@@ -16,6 +16,7 @@
   ],
   "author": "daarojaspa",
   "license": "MIT",
+ "type": "module",
   "bugs": {
     "url": "https://github.com/daarojaspa/blind-movies/issues"
   },

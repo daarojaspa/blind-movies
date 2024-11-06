@@ -1,8 +1,15 @@
-//import { API_KEYS } from "./secret";
-//console.log(process.env.API_KEY)
-async function  getTrandingHome(){
-    const request=await fetch(Url);
-    const data= await request.json();
+const prueva ='jojo'
+import { API_KEYS } from "./secret.js";
+const api= axios.create({
+    baseURL:'https://api.themoviedb.org/3/',
+    headers:{'Content-Type':'applications/jason;charset=utf-8',},
+    params:{'api_key':API_KEYS
+
+    }
+})
+export async function  getTrandingHome(){
+// charge de traiding movies on the home 
+    const {data}= await api('trending/movie/week');
     const movies = data.results;
     console.log(data,movies);
     movies.forEach(movie=> {
@@ -18,9 +25,9 @@ async function  getTrandingHome(){
         });
 }
 
-async function getCategories(){
-    const request=await fetch(Url);
-    const data= await request.json();
+export async function getCategories(){
+    //charche all categories in the api on home
+    const {data}= await api('genre/movie/list');    
     const categories=data.genres
     categories.forEach(
         (category) =>{
@@ -30,15 +37,13 @@ async function getCategories(){
                 categoryContainer.classList.add('category-container');
                 const header=document.createElement('h3');
                 header.classList.add('category-title')
-                header.setAttribute('id','id'+category.id)
+                header.setAttribute('id','id'+category.id) //depending on this propertie we will get a diferent color
                 const headerText=document.createTextNode(category.name);
                 header.appendChild(headerText);
                 categoryContainer.appendChild(header);
                 previewCategoriesContainer.appendChild(categoryContainer);
-                
                }
     );
 
 }
-getTrandingHome();
-getCategories();
+//exported functions are call in navigator
