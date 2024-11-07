@@ -1,8 +1,12 @@
-import { getCategories,getTrandingHome } from "./main.js";
+import { getCategories,getMoviesByCategory,getMoviesBySearch,getTrandingHome } from "./main.js";
 window.addEventListener('DOMContentLoaded',navigator,false);
 window.addEventListener('hashchange',navigator ,false);
 
-searchFormBtn.addEventListener('click',()=>{location.hash='#search='})
+searchFormBtn.addEventListener('click',()=>{
+    console.log(searchFormInput.value)
+    location.hash='#search=' +searchFormInput.value;
+
+})
 arrowBtn.addEventListener('click',()=>{location.hash='home'})
 function map(){
     //validates the  hash  on a list of options for the switch case on the navigator function
@@ -12,7 +16,6 @@ function map(){
 
     }
     else{
-        console.log('is not returning true ' +option)
         return false
     
 } ;})
@@ -47,6 +50,7 @@ function navigator(){
 }
 //next functions implement the woekflow logic of the single aplication page
  function homePage(){
+ document.body.scrollTop=0;    
     headerSection.classList.remove('header-containner--long');
     headerSection.style.background='';
     arrowBtn.classList.add('inactive')
@@ -62,7 +66,7 @@ function navigator(){
 
  }
  function trendsPage(){
-    
+ document.body.scrollTop=0;    
     headerSection.classList.remove('header-container--long');
     //headerSection.style.background='';
     arrowBtn.classList.add('inactive')
@@ -77,20 +81,26 @@ function navigator(){
 
  }
  function searchPage(){
+ document.body.scrollTop=0;    
+    
     headerSection.classList.remove('header-container--long');
     //headerSection.style.background='';
     arrowBtn.classList.remove('inactive')
     arrowBtn.classList.remove('header-arrow--white')
     headerTitle.classList.add('inactive');
-    headerCategoryTitle.classList.remove('inactive');
+    headerCategoryTitle.classList.add('inactive');
     searchForm.classList.remove('inactive');
     categoriesPreviewSection.classList.add('inactive');
     trendingPreviewSection.classList.add('inactive');
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
+    const[,query]=location.hash.split('=')
+    getMoviesBySearch(query);
 
  }
  function categoryPage(){
+ document.body.scrollTop=0;    
+    
     headerSection.classList.remove('header-containner--long');
     headerSection.style.background='';
     arrowBtn.classList.remove('inactive')
@@ -102,9 +112,15 @@ function navigator(){
     trendingPreviewSection.classList.add('inactive');
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
-
+//getting the id to change title and call the function from main
+const[,idname]=location.hash.split('=');
+const[id,name]=idname.split('-');
+headerCategoryTitle.innerText=name;
+getMoviesByCategory(id)
  }
  function moviePage(){
+ document.body.scrollTop=0;    
+    
     headerSection.classList.add('header-container--long');
     headerSection.style.background='';
     arrowBtn.classList.remove('inactive')
